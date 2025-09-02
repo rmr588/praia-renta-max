@@ -43,8 +43,32 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://hooks.zapier.com/hooks/catch/24454656/uh0n6lq/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors", // Required for Zapier webhooks
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          city: formData.city,
+          neighborhood: formData.neighborhood,
+          propertyType: formData.propertyType,
+          capacity: formData.capacity,
+          hasListing: formData.hasListing,
+          listingUrl: formData.listingUrl,
+          allowsPets: formData.allowsPets,
+          startTime: formData.startTime,
+          observations: formData.observations,
+          timestamp: new Date().toISOString(),
+          source: "Mota & Rocha Landing Page"
+        }),
+      });
+
+      // Since we're using no-cors, we won't get a proper response status
       toast({
         title: "Formulário enviado com sucesso!",
         description: "Em até 24h úteis enviamos sua estimativa e o convite para o beta.",
@@ -66,9 +90,16 @@ const ContactForm = () => {
         observations: "",
         consent: false
       });
-      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Erro ao enviar formulário",
+        description: "Tente novamente ou entre em contato conosco diretamente.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
