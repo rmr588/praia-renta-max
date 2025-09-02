@@ -74,16 +74,71 @@ const Metrics = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-6">
+        <div className="mt-12">
+          <p className="text-muted-foreground mb-6 text-center">
             Relatórios enviados todo dia 5 do mês com repasse pontual
           </p>
-          <div className="flex justify-center">
-            <img 
-              src={reportImage} 
-              alt="Exemplo de relatório de performance mensal"
-              className="max-w-md rounded-lg shadow-card"
-            />
+          <div className="bg-card rounded-lg shadow-card p-6 max-w-4xl mx-auto">
+            <h3 className="text-lg font-semibold text-primary mb-6 text-center">
+              Relatório de Performance - Exemplo
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Occupancy Chart */}
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-muted-foreground">Taxa de Ocupação (%)</h4>
+                <div className="h-32 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg flex items-end justify-between px-4 pb-4">
+                  {[65, 78, 85, 92, 88, 83].map((value, index) => (
+                    <div key={index} className="flex flex-col items-center">
+                      <div 
+                        className="bg-primary rounded-t-md w-6 transition-all hover:bg-primary/80"
+                        style={{ height: `${(value / 100) * 80}px` }}
+                      ></div>
+                      <span className="text-xs text-muted-foreground mt-1">
+                        {['J', 'F', 'M', 'A', 'M', 'J'][index]}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Revenue Chart */}
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-muted-foreground">Receita Mensal (R$)</h4>
+                <div className="h-32 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-lg flex items-end justify-between px-4 pb-4">
+                  {[8500, 9200, 11800, 14200, 12800, 10500].map((value, index) => (
+                    <div key={index} className="flex flex-col items-center">
+                      <div 
+                        className="bg-secondary rounded-t-md w-6 transition-all hover:bg-secondary/80"
+                        style={{ height: `${(value / 15000) * 80}px` }}
+                      ></div>
+                      <span className="text-xs text-muted-foreground mt-1">
+                        {['J', 'F', 'M', 'A', 'M', 'J'][index]}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Summary Stats */}
+              <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                <div className="text-center p-3 bg-primary/5 rounded-lg">
+                  <div className="text-lg font-bold text-primary">85%</div>
+                  <div className="text-xs text-muted-foreground">Ocupação Média</div>
+                </div>
+                <div className="text-center p-3 bg-secondary/5 rounded-lg">
+                  <div className="text-lg font-bold text-secondary">R$ 380</div>
+                  <div className="text-xs text-muted-foreground">Diária Média</div>
+                </div>
+                <div className="text-center p-3 bg-accent/5 rounded-lg">
+                  <div className="text-lg font-bold text-accent">28 dias</div>
+                  <div className="text-xs text-muted-foreground">Lead Time</div>
+                </div>
+                <div className="text-center p-3 bg-destructive/5 rounded-lg">
+                  <div className="text-lg font-bold text-destructive">3.2%</div>
+                  <div className="text-xs text-muted-foreground">Cancelamentos</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
