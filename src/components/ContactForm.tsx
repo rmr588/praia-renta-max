@@ -28,6 +28,9 @@ const ContactForm = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Get simulator data if available
+  const simulatorData = (window as any).simulatorData || null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,7 +67,20 @@ const ContactForm = () => {
           startTime: formData.startTime,
           observations: formData.observations,
           timestamp: new Date().toISOString(),
-          source: "Mota & Rocha Landing Page"
+          source: "Mota & Rocha Landing Page",
+          // Include simulator data if available
+          ...(simulatorData && {
+            simulator_propertyType: simulatorData.propertyType,
+            simulator_currentRate: simulatorData.currentRate,
+            simulator_currentOccupancy: simulatorData.currentOccupancy,
+            simulator_targetOccupancy: simulatorData.targetOccupancy,
+            simulator_suggestedRate: simulatorData.suggestedRate,
+            simulator_cleaningFee: simulatorData.cleaningFee,
+            simulator_averageStay: simulatorData.averageStay,
+            simulator_currentRevenue: simulatorData.currentRevenue,
+            simulator_newRevenue: simulatorData.newRevenue,
+            simulator_improvement: simulatorData.improvement
+          })
         }),
       });
 
@@ -90,6 +106,11 @@ const ContactForm = () => {
         observations: "",
         consent: false
       });
+
+      // Clear simulator data after successful submission
+      if ((window as any).simulatorData) {
+        delete (window as any).simulatorData;
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({

@@ -53,6 +53,23 @@ const IncomeSimulator = () => {
   };
 
   const openContactForm = () => {
+    // Pass simulator data to contact form
+    const simulatorData = {
+      propertyType: formData.propertyType,
+      currentRate: formData.currentRate,
+      currentOccupancy: formData.currentOccupancy,
+      targetOccupancy: formData.targetOccupancy,
+      suggestedRate: formData.suggestedRate,
+      cleaningFee: formData.cleaningFee,
+      averageStay: formData.averageStay,
+      currentRevenue: results?.currentRevenue || 0,
+      newRevenue: results?.newRevenue || 0,
+      improvement: results?.improvement || 0
+    };
+    
+    // Store data temporarily for the contact form
+    (window as any).simulatorData = simulatorData;
+    
     const element = document.getElementById('contact-form');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
