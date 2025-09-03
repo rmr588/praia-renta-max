@@ -217,13 +217,13 @@ const ContactForm = () => {
                         <SelectValue placeholder="Selecione uma opção" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Sim">Sim</SelectItem>
-                        <SelectItem value="Não">Não</SelectItem>
+                        <SelectItem value="sim">Sim</SelectItem>
+                        <SelectItem value="nao">Não</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
-                  {formData.hasListing === "Sim" && (
+                  {formData.hasListing === "sim" && (
                     <div className="space-y-2">
                       <Label htmlFor="listingUrl">Link do anúncio</Label>
                       <Input
