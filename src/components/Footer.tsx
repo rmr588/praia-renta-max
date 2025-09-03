@@ -1,8 +1,6 @@
 import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground">
+  return <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -20,7 +18,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-secondary" />
-                <span className="text-sm">(13) 99999-9999</span>
+                <span className="text-sm">(13) 98845-4286</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-secondary" />
@@ -72,28 +70,13 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="flex justify-center gap-6 mt-12 pt-8 border-t border-primary-foreground/20">
-          <a 
-            href="https://instagram.com/motarocha" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors"
-          >
+          <a href="https://instagram.com/motarocha" target="_blank" rel="noopener noreferrer" className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors">
             <Instagram className="w-5 h-5" />
           </a>
-          <a 
-            href="https://facebook.com/motarocha" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors"
-          >
+          <a href="https://facebook.com/motarocha" target="_blank" rel="noopener noreferrer" className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors">
             <Facebook className="w-5 h-5" />
           </a>
-          <a 
-            href="https://linkedin.com/company/motarocha" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors"
-          >
+          <a href="https://linkedin.com/company/motarocha" target="_blank" rel="noopener noreferrer" className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors">
             <Linkedin className="w-5 h-5" />
           </a>
         </div>
@@ -108,8 +91,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
