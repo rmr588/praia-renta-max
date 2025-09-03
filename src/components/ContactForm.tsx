@@ -178,8 +178,16 @@ const ContactForm = () => {
                       id="phone"
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, '');
+                        const formattedValue = value
+                          .replace(/(\d{2})(\d)/, '($1) $2')
+                          .replace(/(\d{5})(\d)/, '$1-$2')
+                          .slice(0, 15);
+                        setFormData({...formData, phone: formattedValue});
+                      }}
                       placeholder="(11) 99999-9999"
+                      maxLength={15}
                     />
                   </div>
 
