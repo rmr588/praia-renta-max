@@ -87,7 +87,7 @@ const Footer = () => {
             <strong>Importante:</strong> Valores podem variar conforme sazonalidade, localização, tipo de imóvel e regras de condomínio. 
             Dados estimados e não constituem promessa de rentabilidade. Esta é uma página informativa para validação de demanda.
             <br />
-            © 2025 Mota & Rocha. Todos os direitos reservados. CNPJ: 00.000.000/0001-00
+            © 2025 Mota & Rocha. Todos os direitos reservados. CNPJ: 26.496.440/0001-75
           </p>
         </div>
       </div>
