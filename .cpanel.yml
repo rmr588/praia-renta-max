@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/motaroch/repositories/praia-renta-max/
+    - /bin/cp -R images $DEPLOYPATH
