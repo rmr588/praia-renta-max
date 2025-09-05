@@ -39,7 +39,7 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <div key={index} className="text-center group">
-              <div className="bg-white shadow-card rounded-xl p-6 mb-4 group-hover:shadow-elegant transition-smooth">
+              <div className="bg-white shadow-card rounded-xl p-6 mb-4 group-hover:shadow-elegant transition-smooth h-64 flex flex-col">
                 <div className="w-16 h-16 gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">
                   <step.icon className="w-8 h-8 text-white" />
                 </div>
