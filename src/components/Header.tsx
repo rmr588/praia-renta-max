@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <header className="bg-background border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
         <button 
           onClick={goToHome}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity group"
