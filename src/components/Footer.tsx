@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
 
         {/* Social Media */}
-        <div className="flex justify-center gap-6 mt-12 pt-8 border-t border-primary-foreground/20">
+        <div className="flex justify-center gap-6 mt-12 pt-8 border-t border-primary-foreground/20 hidden">
           <a href="https://instagram.com/motarocha" target="_blank" rel="noopener noreferrer" className="p-2 bg-primary-foreground/10 rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors">
             <Instagram className="w-5 h-5" />
           </a>
