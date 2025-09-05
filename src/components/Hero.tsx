@@ -58,7 +58,7 @@ const Hero = () => {
           </div>
           
           {/* Trust Badges */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm opacity-90">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm opacity-90 -mt-0.5">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5" />
               <span>Atendimento local</span>
