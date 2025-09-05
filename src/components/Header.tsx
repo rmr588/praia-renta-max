@@ -27,9 +27,6 @@ const Header = () => {
             className="w-12 h-12 object-contain"
           />
           <div>
-            <h1 className="text-2xl font-bold text-primary group-hover:text-primary/80 transition-colors">
-              Mota & Rocha
-            </h1>
             <p className="text-sm text-muted-foreground text-left">
               Gestão Profissional de Temporada
             </p>
