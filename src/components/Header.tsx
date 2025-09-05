@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <header className="bg-background border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <button 
           onClick={goToHome}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity group"
@@ -33,7 +33,7 @@ const Header = () => {
           <img 
             src={motaRochaLogo} 
             alt="Mota & Rocha Logo" 
-            className="h-32 w-auto object-contain"
+            className="h-20 w-auto object-contain"
           />
           <div>
             <p className="text-sm text-muted-foreground text-left">
