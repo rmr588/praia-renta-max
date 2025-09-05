@@ -33,7 +33,7 @@ const Header = () => {
           <img 
             src={motaRochaLogo} 
             alt="Mota & Rocha Logo" 
-            className="h-16 w-auto object-contain"
+            className="h-32 w-auto object-contain"
           />
           <div>
             <p className="text-sm text-muted-foreground text-left">
