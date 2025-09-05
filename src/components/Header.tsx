@@ -28,18 +28,16 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <button 
           onClick={goToHome}
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity group"
+          className="flex flex-col items-center gap-2 hover:opacity-80 transition-opacity group"
         >
           <img 
             src={motaRochaLogo} 
             alt="Mota & Rocha Logo" 
             className="h-20 w-auto object-contain"
           />
-          <div>
-            <p className="text-sm text-muted-foreground text-left">
-              Gestão Profissional de Temporada
-            </p>
-          </div>
+          <p className="text-sm text-muted-foreground text-center font-medium">
+            Gestão Profissional de Temporada
+          </p>
         </button>
         
         {/* Desktop Navigation */}
