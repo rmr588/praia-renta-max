@@ -9,6 +9,13 @@ import { Checkbox } from "./ui/checkbox";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+// Add global callback for Turnstile
+declare global {
+  interface Window {
+    onTurnstileSuccess: (token: string) => void;
+  }
+}
+
 const ContactForm = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -28,9 +35,15 @@ const ContactForm = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
   
   // Get simulator data if available
   const simulatorData = (window as any).simulatorData || null;
+
+  // Set up Turnstile callback
+  window.onTurnstileSuccess = (token: string) => {
+    setTurnstileToken(token);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,6 +52,15 @@ const ContactForm = () => {
       toast({
         title: "Consentimento necessário",
         description: "Por favor, autorize o recebimento de comunicações.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!turnstileToken) {
+      toast({
+        title: "Verificação necessária",
+        description: "Por favor, complete a verificação de segurança.",
         variant: "destructive",
       });
       return;
@@ -53,35 +75,36 @@ const ContactForm = () => {
           "Content-Type": "application/json",
         },
         mode: "no-cors", // Required for Zapier webhooks
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          city: formData.city,
-          neighborhood: formData.neighborhood,
-          propertyType: formData.propertyType,
-          capacity: formData.capacity,
-          hasListing: formData.hasListing,
-          listingUrl: formData.listingUrl,
-          allowsPets: formData.allowsPets,
-          startTime: formData.startTime,
-          observations: formData.observations,
-          timestamp: new Date().toISOString(),
-          source: "Mota & Rocha Landing Page",
-          // Include simulator data if available
-          ...(simulatorData && {
-            simulator_propertyType: simulatorData.propertyType,
-            simulator_currentRate: simulatorData.currentRate,
-            simulator_currentOccupancy: simulatorData.currentOccupancy,
-            simulator_targetOccupancy: simulatorData.targetOccupancy,
-            simulator_suggestedRate: simulatorData.suggestedRate,
-            simulator_cleaningFee: simulatorData.cleaningFee,
-            simulator_averageStay: simulatorData.averageStay,
-            simulator_currentRevenue: simulatorData.currentRevenue,
-            simulator_newRevenue: simulatorData.newRevenue,
-            simulator_improvement: simulatorData.improvement
-          })
-        }),
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            city: formData.city,
+            neighborhood: formData.neighborhood,
+            propertyType: formData.propertyType,
+            capacity: formData.capacity,
+            hasListing: formData.hasListing,
+            listingUrl: formData.listingUrl,
+            allowsPets: formData.allowsPets,
+            startTime: formData.startTime,
+            observations: formData.observations,
+            timestamp: new Date().toISOString(),
+            source: "Mota & Rocha Landing Page",
+            turnstileToken: turnstileToken,
+            // Include simulator data if available
+            ...(simulatorData && {
+              simulator_propertyType: simulatorData.propertyType,
+              simulator_currentRate: simulatorData.currentRate,
+              simulator_currentOccupancy: simulatorData.currentOccupancy,
+              simulator_targetOccupancy: simulatorData.targetOccupancy,
+              simulator_suggestedRate: simulatorData.suggestedRate,
+              simulator_cleaningFee: simulatorData.cleaningFee,
+              simulator_averageStay: simulatorData.averageStay,
+              simulator_currentRevenue: simulatorData.currentRevenue,
+              simulator_newRevenue: simulatorData.newRevenue,
+              simulator_improvement: simulatorData.improvement
+            })
+          }),
       });
 
       // Since we're using no-cors, we won't get a proper response status
@@ -106,6 +129,13 @@ const ContactForm = () => {
         observations: "",
         consent: false
       });
+
+      // Reset turnstile
+      setTurnstileToken("");
+      // Reset the turnstile widget
+      if ((window as any).turnstile) {
+        (window as any).turnstile.reset();
+      }
 
       // Clear simulator data after successful submission
       if ((window as any).simulatorData) {
@@ -316,9 +346,19 @@ const ContactForm = () => {
                       Seus dados serão tratados conforme nossa política de privacidade e Lei Geral de Proteção de Dados (LGPD).
                     </Label>
                   </div>
+
+                  {/* Cloudflare Turnstile */}
+                  <div className="flex justify-center">
+                    <div 
+                      className="cf-turnstile"
+                      data-sitekey="0x4AAAAAABzRJ_7d4ZjPl3l7"
+                      data-theme="light"
+                      data-callback="onTurnstileSuccess"
+                    ></div>
+                  </div>
                 </div>
 
-                <Button 
+                <Button
                   type="submit" 
                   variant="hero" 
                   size="lg" 
