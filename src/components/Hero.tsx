@@ -28,7 +28,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 mt-8 leading-tight">
             Mota & Rocha — gestão profissional de aluguel por temporada em Praia Grande
           </h1>
           
